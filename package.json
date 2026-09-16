@@ -1,0 +1,48 @@
+{
+  "name": "clauding",
+  "displayName": "Clauding",
+  "description": "Play arcade mini-games like Snake directly in VS Code while Claude runs background tasks!",
+  "version": "0.0.1",
+  "publisher": "pathik455",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./dist/extension.js",
+  "activationEvents": [
+    "onCommand:clauding.openGame"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "clauding.openGame",
+        "title": "Clauding: Play Games",
+        "icon": "$(game)"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "clauding.openGame",
+          "group": "navigation",
+          "when": "!claudingActive"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "clauding.openGame"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run build",
+    "build": "node build.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.80.0",
+    "esbuild": "^0.25.0"
+  }
+}
