@@ -1,18 +1,33 @@
 {
   "name": "clauding",
   "displayName": "Clauding",
-  "description": "Play arcade mini-games like Snake directly in VS Code while Claude runs background tasks!",
+  "description": "Retro arcade mini-games (Pixel Snake & Block Invaders) directly in VS Code while Claude runs background tasks!",
   "version": "0.0.1",
   "publisher": "pathik455",
+  "author": {
+    "name": "pathik455"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pathik455/Clauding.git"
+  },
   "engines": {
     "vscode": "^1.80.0"
   },
   "categories": [
     "Other"
   ],
+  "keywords": [
+    "game",
+    "arcade",
+    "snake",
+    "claude",
+    "retro"
+  ],
   "main": "./dist/extension.js",
   "activationEvents": [
-    "*"
+    "onStartupFinished"
   ],
   "contributes": {
     "commands": [
