@@ -12,7 +12,7 @@
   ],
   "main": "./dist/extension.js",
   "activationEvents": [
-    "onCommand:clauding.openGame"
+    "*"
   ],
   "contributes": {
     "commands": [
