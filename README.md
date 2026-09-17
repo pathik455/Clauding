@@ -1,75 +1,58 @@
 # Clauding 🕹️
 
-A retro arcade VS Code extension featuring warm Claude terracotta aesthetics, fluid ambient gradients, and classic mini-games to play while Claude or other AI agents execute long-running coding tasks.
+A retro arcade VS Code extension featuring warm Claude terracotta aesthetics, fluid ambient gradients, the iconic **GTA Theme Song**, and classic mini-games to play while Claude or other AI agents execute long-running coding tasks.
 
 ---
 
-## ✨ Features
+## ✨ Built-in Games
 
-- **Cinematic 4-Second Intro**:
-  - An animated Claude star logo that spins and rolls across into the glowing **Clauding.** title.
-  - Concludes with an atmospheric blur-zoom transition unveiling the Choose Game arcade menu.
-  - Re-triggerable anytime simply by clicking the Clauding header logo.
+- **🦖 Chrome Dino**:
+  - Authentic pixel T-Rex sprite (snout, teeth, curved neck, 2-pixel claw arms, powerful running hind legs, and arching tail).
+  - **Snappy, quick jump**: Zero floatiness—pops up briskly and lands snappy onto the ground with authentic heavy gravity.
+  - Cacti obstacles and flying pterodactyls (duck under high birds with <kbd>↓</kbd>).
 
-- **Warm Claude Aesthetic**:
-  - Fluid animated terracotta background gradients (`#d97757` & `#c15f3e`).
-  - Cohesive styling inspired by the Claude brand, featuring a matched-width `ARCADE GAMES` subtitle.
+- **🐍 Pixel Snake**:
+  - **Dark High-Contrast Arena**: Deep retro charcoal arena (`#090706`) with subtle terracotta guide-lines.
+  - **Emerald Green Snake**: Multi-shaded pixel body (`#16a34a`, `#15803d`, `#22c55e`) with directional tracking pupils.
+  - **Minecraft-Style Apple**: Shaded pixel apple with leaf, stem, specular highlights, and shadow.
+  - **Modern Game Feel**: Input buffer queue (no accidental self-bites), 8-particle burst animations, and floating score popups.
 
-- **Built-in Games**:
-  - 🐍 **Pixel Snake**:
-    - Relaxed **10×10** grid layout with large 32px pixel blocks and smooth ~215ms tick pace.
-    - Minecraft-style pixelated snake and apple art.
-    - **Continuous edge screen wrapping**: glide from left-to-right or top-to-bottom without border collision. The game only ends if the snake bites itself!
-  - 🚀 **Block Invaders**:
-    - High-performance 60 FPS `requestAnimationFrame` loop with delta-time physics (zero lag or jitter).
-    - **Keyboard-only controls** (`A`/`D` or `←`/`→` to navigate; automatic rapid-fire blaster).
-    - Battle through scrolling star dust, destructible asteroid fields, and agile enemy starfighters.
+- **🧱 Block Drop (Tetris)**:
+  - Classic 10×20 matrix with all 7 tetromino shapes (I, J, L, O, S, T, Z).
+  - **Rotate using the Up arrow (<kbd>↑</kbd>)** or <kbd>W</kbd>.
+  - Soft drop (<kbd>↓</kbd>), Hard drop (<kbd>Space</kbd>), ghost landing piece outline, and Next Piece preview box.
 
-- **In-Game Pause & Exit**:
-  - Press `Tab` or click the **Pause** button at any time.
-  - Clean pause overlay with **Resume** and **Exit Game** options.
+- **🚀 Block Invaders**:
+  - 60 FPS delta-time rocket space defense with destructible asteroids and enemy starfighters.
 
-- **Smooth Ambient Sound Engine**:
-  - Built-in Web Audio API synthesizer playing smooth lofi chord progressions (`C maj9`, `A min7`, `D min9`, `G add9`).
-  - Plays softly on home and menu screens, and **automatically silences during active gameplay** so you can focus.
-  - Retro sound effects for eating, turns, blaster shots, and explosions without loading external MP3 files.
+---
 
-- **Instant Zero-Friction Play**:
-  - Single username entry with instant local high score tracking per game.
-  - No unnecessary menus, signups, or heavy online dependencies.
+## 🎵 GTA San Andreas G-Funk Theme Song
+
+- Built-in Web Audio API synthesizer playing the iconic west-coast G-Funk hip-hop beat:
+  - Heavy, syncopated synthesizer bassline.
+  - Classic high G-Funk whistle lead melody.
+  - Head-nodding kick, snare, and hi-hat rhythm.
+  - Toggle sound anytime with the header **Sound / Muted** button.
 
 ---
 
 ## 🎮 Controls
 
-| Action | Control |
-|---|---|
-| **Pause / Resume** | `Tab` key or Pause icon button |
-| **Pixel Snake Move** | `Arrow Keys` or `W`, `A`, `S`, `D` |
-| **Block Invaders Move** | `Arrow Left` / `Arrow Right` or `A` / `D` |
-| **Block Invaders Fire** | Automatic continuous rapid-fire blaster |
-| **Replay Intro** | Click the Claude logo in the top-left header |
+| Game | Action | Controls |
+|---|---|---|
+| **All Games** | **Pause / Resume** | <kbd>Tab</kbd> or Pause icon button |
+| **🦖 Chrome Dino** | **Snappy Jump** | <kbd>W</kbd>, <kbd>↑</kbd>, or <kbd>Space</kbd> |
+| | Duck | <kbd>S</kbd> or <kbd>↓</kbd> |
+| **🐍 Pixel Snake** | Steer Snake | <kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd> or <kbd>Arrow Keys</kbd> |
+| **🧱 Block Drop** | Move Left / Right | <kbd>A</kbd> / <kbd>D</kbd> or <kbd>←</kbd> / <kbd>→</kbd> |
+| | **Rotate Piece** | <kbd>W</kbd> or <kbd>↑</kbd> |
+| | Soft / Hard Drop | <kbd>S</kbd> or <kbd>↓</kbd> / <kbd>Space</kbd> |
+| **🚀 Block Invaders** | Steer Ship | <kbd>A</kbd> / <kbd>D</kbd> or <kbd>←</kbd> / <kbd>→</kbd> (Auto-fire) |
+| **Global** | Replay 4s Intro | Click the Claude star logo in the top-left header |
 
 ---
 
 ## 🚀 Getting Started
 
-### Installation & Development
-
-1. Clone or open the repository:
-   ```bash
-   git clone https://github.com/pathik455/Clauding.git
-   cd Clauding
-   ```
-
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-3. Build the extension bundle:
-   ```bash
-   npm run build
-   ```
-
-4. Press `F5` in VS Code to launch the Extension Development Host, or click the **Clauding** icon (`$(game)`) in the editor status bar / title bar!
+Press <kbd>F5</kbd> in VS Code or click the **`🎮 Clauding`** icon on the bottom status bar!

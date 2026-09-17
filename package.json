@@ -1,8 +1,9 @@
 {
   "name": "clauding",
   "displayName": "Clauding",
-  "description": "Retro arcade mini-games (Pixel Snake & Block Invaders) directly in VS Code while Claude runs background tasks!",
-  "version": "0.0.1",
+  "description": "Retro arcade mini-games (Chrome Dino, Pixel Snake, Block Drop & Block Invaders) directly in VS Code with iconic 8-bit sound synthesizers!",
+  "icon": "media/icon.png",
+  "version": "1.0.0",
   "publisher": "pathik455",
   "author": {
     "name": "pathik455"
@@ -11,6 +12,10 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/pathik455/Clauding.git"
+  },
+  "homepage": "https://github.com/pathik455/Clauding#readme",
+  "bugs": {
+    "url": "https://github.com/pathik455/Clauding/issues"
   },
   "engines": {
     "vscode": "^1.80.0"
@@ -21,9 +26,12 @@
   "keywords": [
     "game",
     "arcade",
+    "tetris",
     "snake",
-    "claude",
-    "retro"
+    "dino",
+    "retro",
+    "pixel-art",
+    "claude"
   ],
   "main": "./dist/extension.js",
   "activationEvents": [
