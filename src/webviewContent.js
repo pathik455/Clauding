@@ -5,6 +5,7 @@ function getWebviewContent() {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Clauding</title>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: https:; frame-src https://www.youtube.com https://www.youtube-nocookie.com; media-src * data: blob:;">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
@@ -693,7 +694,114 @@ function getWebviewContent() {
       font-family: 'JetBrains Mono', monospace;
     }
 
-    .actions { display: flex; gap: 8px; width: 100%; }
+    /* YouTube Shorts Arcade Player Screen */
+    .shorts-player-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      gap: 10px;
+    }
+
+    .shorts-viewport {
+      position: relative;
+      width: clamp(220px, 52vw, 270px);
+      aspect-ratio: 9 / 16;
+      max-height: calc(100vh - 230px);
+      background: #000000;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 2px solid rgba(217, 119, 87, 0.4);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 20px rgba(217, 119, 87, 0.2);
+    }
+
+    .shorts-viewport iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    .shorts-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+    }
+
+    .shorts-nav-btn {
+      background: rgba(217, 119, 87, 0.16);
+      border: 1px solid rgba(217, 119, 87, 0.35);
+      border-radius: 10px;
+      color: #ffffff;
+      padding: 7px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.18s ease;
+      font-family: inherit;
+    }
+
+    .shorts-nav-btn:hover {
+      background: rgba(217, 119, 87, 0.32);
+      border-color: var(--claude-orange);
+      transform: translateY(-1px);
+    }
+
+    .shorts-counter {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--claude-orange-light);
+      padding: 0 6px;
+    }
+
+    .shorts-input-bar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      width: 100%;
+      max-width: 320px;
+    }
+
+    .shorts-input-bar input {
+      flex: 1;
+      padding: 7px 10px;
+      font-size: 11px;
+    }
+
+    .shorts-input-bar button {
+      padding: 7px 12px;
+      font-size: 11px;
+      white-space: nowrap;
+      border-radius: 8px;
+      background: var(--claude-orange);
+      border: none;
+      color: #fff;
+      font-weight: 700;
+      cursor: pointer;
+      transition: opacity 0.15s ease;
+    }
+
+    .shorts-input-bar button:hover {
+      opacity: 0.9;
+    }
+
+    .shorts-title-badge {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #f1ede8;
+      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 290px;
+    }
   </style>
 </head>
 <body>
@@ -851,6 +959,62 @@ function getWebviewContent() {
             <span class="label">BEST</span>
             <span id="cardInvadersBest" class="val">0</span>
           </div>
+        </div>
+
+        <!-- 5. YOUTUBE SHORTS (Pixel Play / Video Reel Icon) -->
+        <div class="game-card" id="cardShorts" style="border-color: rgba(239, 68, 68, 0.35);">
+          <div class="game-card-left">
+            <div class="pixel-icon-box" style="border-color: rgba(239, 68, 68, 0.6); background: rgba(239, 68, 68, 0.12);">
+              <svg class="pixel-icon-svg" viewBox="0 0 16 16">
+                <!-- Pixel YouTube Play Icon -->
+                <rect x="2" y="3" width="12" height="10" rx="2" fill="#ef4444" />
+                <rect x="3" y="4" width="10" height="8" fill="#dc2626" />
+                <polygon points="6,5 11,8 6,11" fill="#ffffff" />
+              </svg>
+            </div>
+            <div class="game-info">
+              <h3>YouTube Shorts</h3>
+              <p>Watch gaming & retro shorts while Claude works</p>
+            </div>
+          </div>
+          <div class="game-best-badge" style="background: rgba(239, 68, 68, 0.15); border-color: rgba(239, 68, 68, 0.35);">
+            <span class="label" style="color: #fca5a5;">REEL</span>
+            <span class="val" style="color: #ef4444;">▶</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCREEN: YOUTUBE SHORTS VIEWER -->
+    <div id="screen-shorts" class="screen surface-card">
+      <div class="game-header" style="margin-bottom: 8px;">
+        <div class="stat-group">
+          <div class="stat-pill" style="color: #ef4444; font-weight: 700;">
+            <span>▶ SHORTS</span>
+          </div>
+          <div id="shortsTitleBadge" class="shorts-title-badge">Gaming & Coding Shorts</div>
+        </div>
+        <div class="header-actions">
+          <button id="exitShortsBtn" class="icon-btn btn-exit" title="Exit to Menu">
+            <span>✕ Exit</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="shorts-player-container">
+        <div class="shorts-viewport">
+          <iframe id="shortsIframe" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+
+        <div class="shorts-controls">
+          <button id="shortsPrevBtn" class="shorts-nav-btn">⏮ Prev</button>
+          <span id="shortsCounter" class="shorts-counter">1 / 5</span>
+          <button id="shortsNextBtn" class="shorts-nav-btn">Next ⏭</button>
+        </div>
+
+        <div class="shorts-input-bar">
+          <input type="text" id="shortsCustomInput" placeholder="Paste YouTube Short link / ID..." autocomplete="off" />
+          <button id="shortsPlayCustomBtn">Load</button>
         </div>
       </div>
     </div>
@@ -1484,6 +1648,100 @@ function getWebviewContent() {
     document.getElementById('cardInvaders').addEventListener('click', () => {
       activeGameType = 'invaders';
       startInvadersGame();
+    });
+
+    // YouTube Shorts Arcade Controller
+    const SHORTS_FEED = [
+      { id: '4rP4v0yU-eU', title: 'Speedrunning Google Dino Game 🦖' },
+      { id: 'dQw4w9WgXcQ', title: 'Arcade Classic Music 🎵' },
+      { id: '7m1f3mQ4W-o', title: 'Pac-Man Arcade Secrets 🕹️' },
+      { id: 'FzG4uDgje3M', title: 'Minecraft Pixel Art Creation 🎨' },
+      { id: 'v7Scfl_a6Xw', title: 'Retro Tetris World Championship 🧱' }
+    ];
+    let currentShortIndex = 0;
+    const shortsIframe = document.getElementById('shortsIframe');
+    const shortsTitleBadge = document.getElementById('shortsTitleBadge');
+    const shortsCounter = document.getElementById('shortsCounter');
+    const shortsPrevBtn = document.getElementById('shortsPrevBtn');
+    const shortsNextBtn = document.getElementById('shortsNextBtn');
+    const exitShortsBtn = document.getElementById('exitShortsBtn');
+    const shortsCustomInput = document.getElementById('shortsCustomInput');
+    const shortsPlayCustomBtn = document.getElementById('shortsPlayCustomBtn');
+
+    function extractYouTubeVideoId(input) {
+      if (!input) return null;
+      input = input.trim();
+      const shortsMatch = input.match(/shorts\/([a-zA-Z0-9_-]{11})/);
+      if (shortsMatch) return shortsMatch[1];
+      const watchMatch = input.match(/[?&]v=([a-zA-Z0-9_-]{11})/);
+      if (watchMatch) return watchMatch[1];
+      const shareMatch = input.match(/youtu\.be\/([a-zA-Z0-9_-]{11})/);
+      if (shareMatch) return shareMatch[1];
+      if (/^[a-zA-Z0-9_-]{11}$/.test(input)) return input;
+      return null;
+    }
+
+    function loadShortByIndex(index) {
+      if (index < 0) index = SHORTS_FEED.length - 1;
+      if (index >= SHORTS_FEED.length) index = 0;
+      currentShortIndex = index;
+      const item = SHORTS_FEED[currentShortIndex];
+      shortsTitleBadge.textContent = item.title;
+      shortsCounter.textContent = (currentShortIndex + 1) + ' / ' + SHORTS_FEED.length;
+      shortsIframe.src = 'https://www.youtube-nocookie.com/embed/' + item.id + '?autoplay=1&loop=1&playlist=' + item.id;
+    }
+
+    function loadCustomShort(idOrUrl) {
+      const vidId = extractYouTubeVideoId(idOrUrl);
+      if (!vidId) {
+        alert('Please enter a valid YouTube Shorts link or 11-character video ID!');
+        return;
+      }
+      shortsTitleBadge.textContent = 'Custom Short';
+      shortsCounter.textContent = '★ Custom';
+      shortsIframe.src = 'https://www.youtube-nocookie.com/embed/' + vidId + '?autoplay=1&loop=1&playlist=' + vidId;
+    }
+
+    function openShortsScreen() {
+      if (animFrameId) cancelAnimationFrame(animFrameId);
+      isGameRunning = false;
+      isGamePaused = false;
+      updatePauseUI();
+      showScreen('screen-shorts');
+      loadShortByIndex(currentShortIndex);
+    }
+
+    function closeShortsScreen() {
+      shortsIframe.src = '';
+      showScreen('screen-select');
+    }
+
+    document.getElementById('cardShorts').addEventListener('click', () => {
+      openShortsScreen();
+    });
+
+    exitShortsBtn.addEventListener('click', () => {
+      closeShortsScreen();
+    });
+
+    shortsPrevBtn.addEventListener('click', () => {
+      loadShortByIndex(currentShortIndex - 1);
+    });
+
+    shortsNextBtn.addEventListener('click', () => {
+      loadShortByIndex(currentShortIndex + 1);
+    });
+
+    shortsPlayCustomBtn.addEventListener('click', () => {
+      const val = shortsCustomInput.value;
+      if (val) loadCustomShort(val);
+    });
+
+    shortsCustomInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        const val = shortsCustomInput.value;
+        if (val) loadCustomShort(val);
+      }
     });
 
     btnPlayAgain.addEventListener('click', () => {

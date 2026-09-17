@@ -25,6 +25,11 @@ A retro arcade VS Code extension featuring warm Claude terracotta aesthetics, fl
 - **🚀 Block Invaders**:
   - 60 FPS delta-time rocket space defense with destructible asteroids and enemy starfighters.
 
+- **📱 YouTube Shorts Reel**:
+  - Curated vertical arcade video feed (speedrunning, gaming lore, and pixel art shorts).
+  - Flip through shorts with **Next ⏭️** / **Previous ⏮️** buttons.
+  - Custom Short loader: paste any YouTube Short link or video ID to watch directly in VS Code.
+
 ---
 
 ## 🎵 GTA San Andreas G-Funk Theme Song

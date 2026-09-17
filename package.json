@@ -1,7 +1,7 @@
 {
   "name": "clauding",
   "displayName": "Clauding",
-  "description": "Retro arcade mini-games (Chrome Dino, Pixel Snake, Block Drop & Block Invaders) directly in VS Code with iconic 8-bit sound synthesizers!",
+  "description": "Retro arcade mini-games (Chrome Dino, Pixel Snake, Block Drop & Block Invaders) and YouTube Shorts reel directly in VS Code!",
   "icon": "media/icon.png",
   "version": "1.0.0",
   "publisher": "pathik455",
@@ -30,7 +30,8 @@
     "snake",
     "dino",
     "retro",
-    "pixel-art",
+    "shorts",
+    "youtube",
     "claude"
   ],
   "main": "./dist/extension.js",
