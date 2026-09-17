@@ -4,5 +4,6 @@ src/**
 .git/**
 .gitignore
 build.js
+scripts/**
 node_modules/**
 *.vsix
