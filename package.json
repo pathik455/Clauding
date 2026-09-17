@@ -3,7 +3,7 @@
   "displayName": "Clauding",
   "description": "Retro arcade mini-games (Chrome Dino, Pixel Snake, Block Drop & Block Invaders) directly in VS Code with iconic 8-bit sound synthesizers!",
   "icon": "media/icon.png",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "pathik455",
   "author": {
     "name": "pathik455"
