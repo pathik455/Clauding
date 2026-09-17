@@ -47,7 +47,14 @@ function activate(context) {
     }, null, context.subscriptions);
   });
 
-  context.subscriptions.push(disposable);
+  const resetDisposable = vscode.commands.registerCommand('clauding.resetData', () => {
+    if (currentPanel) {
+      currentPanel.webview.postMessage({ command: 'resetClaudingData' });
+    }
+    vscode.window.showInformationMessage('Clauding: Local storage, gamer tag, and high scores have been reset.');
+  });
+
+  context.subscriptions.push(disposable, resetDisposable);
 }
 
 function deactivate() {

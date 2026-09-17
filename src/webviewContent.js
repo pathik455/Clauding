@@ -1405,6 +1405,27 @@ function getWebviewContent() {
     let animFrameId = null;
     let currentScreenId = 'screen-select';
 
+    function clearAllClaudingData() {
+      try {
+        Object.keys(localStorage).forEach(key => {
+          if (key.startsWith('clauding')) {
+            localStorage.removeItem(key);
+          }
+        });
+      } catch (e) {}
+      username = '';
+      if (typeof usernameInput !== 'undefined' && usernameInput) usernameInput.value = '';
+      refreshBestScoresUI();
+      showScreen('screen-user');
+    }
+
+    window.addEventListener('message', (event) => {
+      const message = event.data;
+      if (message && message.command === 'resetClaudingData') {
+        clearAllClaudingData();
+      }
+    });
+
     function getHighScoreKey() {
       return 'clauding_highscore_' + activeGameType;
     }
